@@ -5,14 +5,26 @@
     --font-main: 'Libertinus Serif', 'Georgia', 'Times', 'Source Serif Pro', serif;
     --font-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --font-scale: 1em;
+
     --background-color: #fff;
     --heading-color: #222;
-    --text-color: #444;
+    --text-color: #202122; /* From Wiki */
     --link-color: #3273dc;
-    --visited-color:  #8b6fcb;
+    --visited-color: #8b6fcb;
     --code-background-color: #f2f2f2;
     --code-color: #222;
     --blockquote-color: #222;
+
+    /* Wikipedia blue ambox palette */
+    --color-blue-light-bg: #f5faff;
+    --color-blue-light-border: #cedff2;
+    --color-blue-medium-bg: #cedff2;
+    --color-blue-medium-border: #a3b0bf;
+
+    /* Ambox (notice box) — uses blue700 border and blue50 background */
+    --ambox-border-color: var(--color-blue700);
+    --ambox-background-color: var(--color-blue-light-bg);
+    --ambox-hairline-color: var(--color-blue-light-border);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,10 +33,15 @@
         --heading-color: #eee;
         --text-color: #ddd;
         --link-color: #8cc2dd;
-        --visited-color:  #8b6fcb;
+        --visited-color: #8b6fcb;
         --code-background-color: #000;
         --code-color: #ddd;
         --blockquote-color: #ccc;
+
+        /* Ambox in dark mode: use blue100 for border (lighter), blue1000 for background (dark) */
+        --ambox-border-color: var(--color-light-blue-border);
+        --ambox-background-color: var(--color-light-blue-bg);
+        --ambox-hairline-color: #3a4b5c;
     }
 }
 
@@ -143,6 +160,43 @@ header {
     margin-block-end: 1em;
     overflow-x: auto;
 }
+
+/** ---------- AMBOX START --------- **/
+/* Modelled after https://en.wikipedia.org/wiki/Template:Ambox */
+
+.ambox {
+    display: flex;
+    align-items: center;
+    gap: 1.1em;
+    padding: 0em 0.5em 0.5em;
+    background-color: var(--ambox-background-color);
+    border: 1px solid var(--ambox-hairline-color);
+}
+
+.ambox-text {
+    flex: 1 1 auto;
+}
+
+.ambox-title {
+    margin: -0.5em 0em;
+    padding: 0.2em 0.4em;
+    background-color: var(--color-blue-medium-bg);
+    border: 1px solid var(--color-blue-medium-border);
+    font-family: var(--font-secondary);
+    font-weight: bold;
+    font-size: 120%;
+    color: var(--heading-color);
+}
+
+.ambox-text p {
+    margin: 0.3em 0;
+}
+
+.ambox-text p:last-child {
+    margin-bottom: 0;
+}
+
+/** ---------- AMBOX END --------- **/
 
 /* blog post list */
 ul.blog-posts {

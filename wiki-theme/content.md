@@ -1,6 +1,10 @@
-Hi, I'm a computer programmer from Ireland. I like to build my own tools and this website is where I share my thoughts. 
-
-Feel free to get in touch!
+<div class="ambox ambox-notice">
+  <div class="ambox-text">
+    <p class="ambox-title">Welcome to my website</p>
+    <p>Hi, I'm a computer programmer from Ireland. I like to build my own tools and this website is where I share my thoughts.</p>
+    <p>Feel free to get in touch!</p>
+  </div>
+</div>
 
 <ul class="embedded blog-posts">
   <li data-tags="Essay,Not-tech">
