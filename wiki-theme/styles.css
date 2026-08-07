@@ -25,6 +25,13 @@
     --ambox-border-color: var(--color-blue700);
     --ambox-background-color: var(--color-blue-light-bg);
     --ambox-hairline-color: var(--color-blue-light-border);
+
+    /* .wikitable, verbatim from MediaWiki's mediawiki.skinning.content module.
+       Comments give the Codex token each value is the fallback for. */
+    --wikitable-bg: #f8f9fa;            /* --background-color-neutral-subtle */
+    --wikitable-header-bg: #eaecf0;     /* --background-color-neutral */
+    --wikitable-border: #a2a9b1;        /* --border-color-base */
+    --wikitable-color: #202122;         /* --color-base */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,6 +48,12 @@
         --ambox-border-color: var(--color-light-blue-border);
         --ambox-background-color: var(--color-light-blue-bg);
         --ambox-hairline-color: #3a4b5c;
+
+        /* Wikipedia's own night-mode values for the same four tokens */
+        --wikitable-bg: #202122;
+        --wikitable-header-bg: #27292d;
+        --wikitable-border: #72777d;
+        --wikitable-color: #eaecf0;
     }
 }
 
@@ -205,23 +218,95 @@ nav p {
 
 /** ---------- AMBOX END --------- **/
 
-/* blog post list */
+/** ---------- POST LIST AS WIKITABLE START --------- **/
+/* Bear generates the <ul> from {{ posts }} and we can't touch that markup, so
+   the list is given a table formatting context instead. border-collapse and
+   automatic column sizing both work exactly as they would on a real <table>. */
+
+/* The wrapper is the table; the <ul> is its row group, exactly as a <tbody>
+   would be. That puts the header row and the post rows inside one table, so
+   automatic column sizing aligns them with no hardcoded widths. The wrapper
+   and header row are static markup — written once, never touched again as
+   posts are added, so {{ posts }} still does all the work. */
+.posts-table {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+    background-color: var(--wikitable-bg);
+    color: var(--wikitable-color);
+    border: 1px solid var(--wikitable-border);
+}
+
 ul.blog-posts {
+    display: table-row-group;
     list-style-type: none;
     padding: unset;
+    margin: 0;
+}
+
+.posts-header {
+    display: table-row;
+}
+
+/* .wikitable > * > tr > th — header background, centred, and bold */
+.posts-header span {
+    display: table-cell;
+    background-color: var(--wikitable-header-bg);
+    border: 1px solid var(--wikitable-border);
+    padding: 0.2em 0.4em;
+    text-align: center;
+    font-weight: bold;
 }
 
 ul.blog-posts li {
-    display: flex;
+    display: table-row;
 }
 
-ul.blog-posts li span {
-    flex: 0 0 130px;
+/* Scoped to > span and > a deliberately. Bear's post_list.html also emits
+   <p>, <img> and <div> children when the show_description / show_image /
+   show_content embed options are on; a looser selector would turn those
+   into stray extra columns. */
+ul.blog-posts li > span,
+ul.blog-posts li > a,
+ul.blog-posts li::after {
+    display: table-cell;
+    border: 1px solid var(--wikitable-border);
+    padding: 0.2em 0.4em;
+    vertical-align: top;
+}
+
+/* Date column. width: 1% collapses the cell to its min-content width, which
+   nowrap then pins to the width of the longest date. */
+ul.blog-posts li > span {
+    width: 1%;
+    white-space: nowrap;
+}
+
+/* Bear wraps the date in <i> and the default theme sets it monospace.
+   Wikipedia uses plain body sans for dates in tables. */
+ul.blog-posts li > span i,
+ul.blog-posts li > span time {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: normal;
+}
+
+/* Tags column, from the data-tags attribute Bear already puts on each <li>.
+   Generated content in a table-row context becomes a real cell. Renders as
+   "Essay,Not-tech" — Bear joins with |join:"," and CSS can't add the space. */
+ul.blog-posts li::after {
+    content: attr(data-tags);
+    width: 1%;
+    white-space: nowrap;
+    color: var(--wikitable-color);
 }
 
 ul.blog-posts li a:visited {
     color: var(--visited-color);
 }
+
+/** ---------- POST LIST AS WIKITABLE END --------- **/
 footer {
     display: none;
 }
