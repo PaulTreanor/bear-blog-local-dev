@@ -7,4 +7,13 @@ Bearblog compiles CSS into the HTML document for each page as a `<style>` tag. I
 ### Creating local dev env for your own blog
 To recreate this for your own blog pages you need to copy your pages HTML as actually served (open your blog page, then press `cmd/ctrl` + `u`, then copy that). 
 
-I recommend you run `prettier` on the html you copy into your editor because it will be an unformatted mess: `npx prettier --write default-bear-blog/index.html`
+I recommend you run `prettier` on the html you copy into your editor because it will be an unformatted mess: 
+
+```bash
+npx prettier --write default-bear-blog
+npx prettier --write --use-tabs default-bear-blog   
+```     
+
+### TODO: Proper Markdown HTML separation. 
+
+Basically can I get the MD input to HTML working properly for this. Ie. an MD file (as you have with bear blog) can be entirely used and we can ignore all the HTML boilerplate. 
