@@ -4,11 +4,12 @@
   "description": "This is my repo for developing bear blog themes in a local environment. Rather than developing themes in the bear blog dashboard's CSS input box, and hitting \"publish\" to see the changes, I can develop them locally.",
   "main": "index.js",
   "scripts": {
-    "dev:wikipedia": "tailwindcss -i ./wikipedia-theme/input.css -o ./wikipedia-theme/styles.css --watch",
-    "build:wikipedia": "tailwindcss -i ./wikipedia-theme/input.css -o ./wikipedia-theme/styles.css --minify"
+    "dev": "bash scripts/tailwind-theme.sh dev",
+    "build": "bash scripts/tailwind-theme.sh build",
+    "build:all": "bash scripts/tailwind-theme.sh build-all"
   },
   "keywords": [],
-  "author": "",
+  "author": "Paul Treanor",
   "license": "ISC",
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",

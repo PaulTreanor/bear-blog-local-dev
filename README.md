@@ -14,6 +14,16 @@ npx prettier --write default-bear-blog
 npx prettier --write --use-tabs default-bear-blog   
 ```     
 
+## TailwindCSS workflow
+TailwindCSS is used to develop the themes. 
+
+For each theme Tailwind is imported and accessible in `input.css`. It's then compiled in `styles.css`. 
+
+```zsh
+npm run dev -- wikipedia-theme 
+npm run build -- wikipedia-theme ```
+
 ### TODO: Proper Markdown HTML separation. 
 
 Basically can I get the MD input to HTML working properly for this. Ie. an MD file (as you have with bear blog) can be entirely used and we can ignore all the HTML boilerplate. 
+
