@@ -7,13 +7,13 @@
     --font-scale: 1em;
 
     --background-color: #fff;
-    --heading-color: #222;
     --text-color: #202122; /* From Wiki */
     --link-color: #3273dc;
     --visited-color: #8b6fcb;
     --code-background-color: #f2f2f2;
     --code-color: #222;
     --blockquote-color: #222;
+    --underline-border-color: #c8ccd1;
 
     /* Wikipedia blue ambox palette */
     --color-blue-light-bg: #f5faff;
@@ -30,7 +30,6 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --background-color: #01242e;
-        --heading-color: #eee;
         --text-color: #ddd;
         --link-color: #8cc2dd;
         --visited-color: #8b6fcb;
@@ -61,7 +60,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-main);
-    color: var(--heading-color);
+    color: var(--text-color);
+}
+
+h2 {
+    padding-bottom: 0.15em;
+    border-bottom: 1px solid var(--underline-border-color);
 }
 
 a {
@@ -76,10 +80,6 @@ a:hover {
 
 nav a {
     margin-right: 8px;
-}
-
-strong, b {
-    color: var(--heading-color);
 }
 
 button {
@@ -135,7 +135,15 @@ header {
     align-items: baseline;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 0.3em 1.5em;
+    gap: 1.5em;
+    line-height: 1.15;
+    padding-bottom: 0.15em;
+    margin-bottom: 1.5em;
+    border-bottom: 1px solid var(--underline-border-color);
+}
+
+nav p {
+    margin: 0;
 }
 
 .title:hover {
@@ -185,7 +193,6 @@ header {
     font-family: var(--font-secondary);
     font-weight: bold;
     font-size: 120%;
-    color: var(--heading-color);
 }
 
 .ambox-text p {

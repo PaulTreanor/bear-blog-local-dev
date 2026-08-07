@@ -6,6 +6,7 @@
   </div>
 </div>
 
+## Blog Posts
 <ul class="embedded blog-posts">
   <li data-tags="Essay,Not-tech">
     <span><i><time datetime="2026-04-12T17:45Z">12 Apr, 2026</time></i></span>
