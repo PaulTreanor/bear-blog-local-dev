@@ -1,9 +1,9 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Libertinus+Serif:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
 
 :root {
     --width: 720px;
-    --font-main: Verdana, sans-serif;
-    --font-secondary: Verdana, sans-serif;
+    --font-main: 'Libertinus Serif', 'Georgia', 'Times', 'Source Serif Pro', serif;
+    --font-secondary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     --font-scale: 1em;
     --background-color: #fff;
     --heading-color: #222;
@@ -113,12 +113,21 @@ footer {
     text-align: center;
 }
 
+header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.3em 1.5em;
+}
+
 .title:hover {
     text-decoration: none;
 }
 
 .title h1 {
     font-size: 1.5em;
+    margin: 0;
 }
 
 .inline {
