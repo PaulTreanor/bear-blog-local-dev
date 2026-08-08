@@ -1,14 +1,15 @@
 <div class="ambox ambox-notice">
   <div class="ambox-text">
-    <p class="ambox-title">Welcome to my website</p>
-    <p>Hi, I'm a computer programmer from Ireland. I like to build my own tools and this website is where I share my thoughts.</p>
+    <p class="ambox-title">Hi, welcome to my website</p>
+    <p>I'm a computer programmer from Ireland. I like to build my own tools and this website is where I share my thoughts.</p>
     <p>Feel free to get in touch!</p>
   </div>
 </div>
 
 ## Blog Posts
-<div class="posts-table">
-<div class="posts-header"><span>Date</span><span>Title</span><span>Tags</span></div>
+
+<!-- On the live blog this whole list is just: {{ posts }}
+     The header-directive script groups it into <h3> year headings. -->
 <ul class="embedded blog-posts">
   <li data-tags="Essay,Not-tech">
     <span><i><time datetime="2026-04-12T17:45Z">12 Apr, 2026</time></i></span>
@@ -115,7 +116,3 @@
     <a href="/local-outlier-factor/">Local outlier factor from scratch in Python</a>
   </li>
 </ul>
-</div>
-
-
-

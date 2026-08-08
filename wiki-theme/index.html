@@ -90,6 +90,116 @@ Feel free to get in touch!
 		/>
 
 		<link rel="stylesheet" type="text/css" href="styles.css" />
+
+		<!--
+			Paste this block verbatim into Bear's dashboard under
+			Settings → Header directive (paid accounts only — it's rendered
+			with |safe on home.html, post.html and posts.html, so it runs
+			site-wide and skips clean()).
+
+			Groups a single {{ posts }} list into <h3> year headings, and
+			reformats each date to "12th April" — the year lives in the
+			heading instead. Post pages have no ul.blog-posts, so their dates
+			are left completely alone and keep the year.
+		-->
+		<script>
+			(function () {
+				"use strict";
+
+				var MONTHS = [
+					"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+					"Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+				];
+
+				// Zero-padded day + 3-letter month, so every date is the same
+				// character count ("02 Feb", "12 Apr"). Equivalent to Bear's
+				// "d M" format string, but applied only to the index list so
+				// post pages keep the year.
+				function dayMonth(d) {
+					var day = String(d.getDate());
+					if (day.length < 2) day = "0" + day;
+					return day + " " + MONTHS[d.getMonth()];
+				}
+
+				function groupPostsByYear() {
+					// :not([data-grouped]) keeps this idempotent — the lists it
+					// generates are skipped if it ever runs twice.
+					var lists = document.querySelectorAll(
+						"ul.blog-posts:not([data-grouped])"
+					);
+
+					Array.prototype.forEach.call(lists, function (list) {
+						var order = [];
+						var byYear = {};
+
+						Array.prototype.forEach.call(
+							list.querySelectorAll("li"),
+							function (li) {
+								// datetime is always the full ISO timestamp, set
+								// server-side and never rewritten by Bear's own
+								// date formatter (which only touches innerText).
+								var t = li.querySelector("time[datetime]");
+								if (!t) return;
+								var d = new Date(t.dateTime);
+								if (isNaN(d.getTime())) return;
+
+								var y = d.getFullYear();
+								if (!byYear[y]) {
+									byYear[y] = [];
+									order.push(y);
+								}
+								byYear[y].push({ li: li, date: d, time: t });
+							}
+						);
+
+						if (!order.length) return;
+
+						var frag = document.createDocumentFragment();
+
+						// Years are emitted in document order, so Bear's own
+						// order: parameter is respected rather than overridden.
+						order.forEach(function (year) {
+							var h = document.createElement("h3");
+							h.textContent = year;
+							frag.appendChild(h);
+
+							var ul = document.createElement("ul");
+							ul.className = list.className;
+							ul.setAttribute("data-grouped", "1");
+
+							byYear[year].forEach(function (entry) {
+								entry.time.textContent = dayMonth(entry.date);
+
+								// Bear emits <span>date</span> before <a>title</a>.
+								// Move the date to the end of the <li> so it reads
+								// "Title (12 Apr)". Doing this in the DOM keeps the
+								// native list marker — reordering inline children in
+								// CSS would need flexbox, which drops the bullet.
+								var dateSpan = entry.time.closest("span");
+								if (dateSpan) entry.li.appendChild(dateSpan);
+
+								ul.appendChild(entry.li);
+							});
+
+							frag.appendChild(ul);
+						});
+
+						list.parentNode.replaceChild(frag, list);
+					});
+				}
+
+				// Exposed so the local dev env can re-run it after content.md
+				// is injected — innerHTML-inserted <script> tags never execute,
+				// and the async fetch resolves after DOMContentLoaded anyway.
+				window.groupPostsByYear = groupPostsByYear;
+
+				if (document.readyState === "loading") {
+					document.addEventListener("DOMContentLoaded", groupPostsByYear);
+				} else {
+					groupPostsByYear();
+				}
+			})();
+		</script>
 	</head>
 
 	<body
@@ -147,6 +257,9 @@ Feel free to get in touch!
 				.then((res) => res.text())
 				.then((markdown) => {
 					document.getElementById("content").innerHTML = marked.parse(markdown);
+					// Local-env only. On the real blog Bear renders {{ posts }}
+					// server-side, so the DOMContentLoaded handler is enough.
+					window.groupPostsByYear();
 				});
 		</script>
 		<footer>

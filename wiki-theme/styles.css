@@ -72,13 +72,32 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-main);
     color: var(--text-color);
 }
 
+/* Wikipedia uses the serif stack for h1 and h2 only — h3 and below are
+   bold sans-serif. Sizes are MediaWiki's: 188% / 150% / 128% / 116%. */
+h1, h2 {
+    font-family: var(--font-main);
+    line-height: 1.375;
+}
+
 h2 {
+    font-size: 150%;
     padding-bottom: 0.15em;
+    margin-bottom: 0.6em;
     border-bottom: 1px solid var(--underline-border-color);
+}
+
+h3, h4, h5, h6 {
+    font-family: var(--font-secondary);
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 128%;
+    margin-bottom: 0.3em;
+    padding-top: 0.5em;
 }
 
 a {
@@ -218,73 +237,41 @@ nav p {
 
 /** ---------- AMBOX END --------- **/
 
-/** ---------- POST LIST AS WIKITABLE START --------- **/
-/* Bear generates the <ul> from {{ posts }} and we can't touch that markup, so
-   the list is given a table formatting context instead. border-collapse and
-   automatic column sizing both work exactly as they would on a real <table>. */
-
-/* The wrapper is the table; the <ul> is its row group, exactly as a <tbody>
-   would be. That puts the header row and the post rows inside one table, so
-   automatic column sizing aligns them with no hardcoded widths. The wrapper
-   and header row are static markup — written once, never touched again as
-   posts are added, so {{ posts }} still does all the work. */
-.posts-table {
-    display: table;
-    border-collapse: collapse;
-    width: 100%;
-    margin: 1em 0;
-    background-color: var(--wikitable-bg);
-    color: var(--wikitable-color);
-    border: 1px solid var(--wikitable-border);
-}
+/** ---------- POST LIST START --------- **/
+/* Chronological index in Wikipedia's year-article format: a bold sans <h3>
+   per year, then a disc-bulleted list of "date – title" entries.
+   Metrics are verbatim from mediawiki.skinning.content.
+   One {{ posts from:YYYY-01-01 to:YYYY-12-31 }} embed per year. */
 
 ul.blog-posts {
-    display: table-row-group;
-    list-style-type: none;
-    padding: unset;
-    margin: 0;
-}
-
-.posts-header {
-    display: table-row;
-}
-
-/* .wikitable > * > tr > th — header background, centred, and bold */
-.posts-header span {
-    display: table-cell;
-    background-color: var(--wikitable-header-bg);
-    border: 1px solid var(--wikitable-border);
-    padding: 0.2em 0.4em;
-    text-align: center;
-    font-weight: bold;
+    list-style-type: disc;
+    margin: 0.3em 0 0 1.6em;
+    padding: 0;
 }
 
 ul.blog-posts li {
-    display: table-row;
+    display: list-item;
+    margin-bottom: 0.1em;
 }
 
-/* Scoped to > span and > a deliberately. Bear's post_list.html also emits
-   <p>, <img> and <div> children when the show_description / show_image /
-   show_content embed options are on; a looser selector would turn those
-   into stray extra columns. */
-ul.blog-posts li > span,
-ul.blog-posts li > a,
-ul.blog-posts li::after {
-    display: table-cell;
-    border: 1px solid var(--wikitable-border);
-    padding: 0.2em 0.4em;
-    vertical-align: top;
-}
-
-/* Date column. width: 1% collapses the cell to its min-content width, which
-   nowrap then pins to the width of the longest date. */
+/* The date trails the title as a smaller parenthetical: "Title (12 Apr)".
+   The script moves the <span> after the <a>; these supply the brackets.
+   The leading space collapses with the source whitespace, so it can't double. */
 ul.blog-posts li > span {
-    width: 1%;
-    white-space: nowrap;
+    font-size: 88%;
 }
 
-/* Bear wraps the date in <i> and the default theme sets it monospace.
-   Wikipedia uses plain body sans for dates in tables. */
+ul.blog-posts li > span::before {
+    content: " (";
+}
+
+ul.blog-posts li > span::after {
+    content: ")";
+}
+
+/* Bear wraps the date in <i>, and the default theme sets time to monospace.
+   Wikipedia uses plain body text for dates in these lists. font-size: inherit
+   lets the 88% above carry through rather than resetting it. */
 ul.blog-posts li > span i,
 ul.blog-posts li > span time {
     font-family: inherit;
@@ -292,21 +279,11 @@ ul.blog-posts li > span time {
     font-style: normal;
 }
 
-/* Tags column, from the data-tags attribute Bear already puts on each <li>.
-   Generated content in a table-row context becomes a real cell. Renders as
-   "Essay,Not-tech" — Bear joins with |join:"," and CSS can't add the space. */
-ul.blog-posts li::after {
-    content: attr(data-tags);
-    width: 1%;
-    white-space: nowrap;
-    color: var(--wikitable-color);
-}
-
 ul.blog-posts li a:visited {
     color: var(--visited-color);
 }
 
-/** ---------- POST LIST AS WIKITABLE END --------- **/
+/** ---------- POST LIST END --------- **/
 footer {
     display: none;
 }
