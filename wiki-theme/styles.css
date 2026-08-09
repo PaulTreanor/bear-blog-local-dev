@@ -21,13 +21,20 @@
     --color-blue-medium-bg: #cedff2;
     --color-blue-medium-border: #a3b0bf;
 
-    /* Ambox (notice box) — uses blue700 border and blue50 background */
+    /* Wikipedia green ambox palette */
+    --color-green-light-bg: #f5fffa;
+    --color-green-light-border: #cef2e0;
+    --color-green-medium-bg: #cef2e0;
+    --color-green-medium-border: #a3bfb1;
+
+
     --ambox-border-color: var(--color-blue700);
     --ambox-background-color: var(--color-blue-light-bg);
     --ambox-hairline-color: var(--color-blue-light-border);
+    --ambox-title-bg: var(--color-blue-medium-bg);
+    --ambox-title-border: var(--color-blue-medium-border);
 
-    /* .wikitable, verbatim from MediaWiki's mediawiki.skinning.content module.
-       Comments give the Codex token each value is the fallback for. */
+    /* .wikitable, verbatim from MediaWiki's mediawiki.skinning.content module */
     --wikitable-bg: #f8f9fa;            /* --background-color-neutral-subtle */
     --wikitable-header-bg: #eaecf0;     /* --background-color-neutral */
     --wikitable-border: #a2a9b1;        /* --border-color-base */
@@ -204,24 +211,77 @@ nav p {
 /** ---------- AMBOX START --------- **/
 /* Modelled after https://en.wikipedia.org/wiki/Template:Ambox */
 
-.ambox {
-    display: flex;
-    align-items: center;
-    gap: 1.1em;
+.ambox-blue {
     padding: 0em 0.5em 0.5em;
     background-color: var(--ambox-background-color);
     border: 1px solid var(--ambox-hairline-color);
 }
 
 .ambox-text {
-    flex: 1 1 auto;
+    display: flow-root;
+}
+
+/* Box images. Text wraps beside them and continues full-width underneath —
+
+   Each class works on either a bare <img> or a <figure> wrapping an <img>.
+   Use the <figure> form when you want a caption:
+
+     <img class="ambox-image-side" alt="" src="…">
+
+     <figure class="ambox-image-side">
+       <img alt="" src="…">
+       <figcaption>Caption text</figcaption>
+     </figure>
+*/
+.ambox-image-side,
+.ambox-image-side-right,
+.ambox-image-top {
+    width: 150px;
+}
+
+.ambox-image-side {
+    float: left;
+    margin: 0.4em 1em 0.4em 0;
+}
+
+.ambox-image-side-right {
+    float: right;
+    margin: 0.4em 0 0.4em 1em;
+}
+
+.ambox-image-top {
+    margin: 0.5em 0 0;
+}
+
+img.ambox-image-side,
+img.ambox-image-side-right,
+img.ambox-image-top {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+figure.ambox-image-side > img,
+figure.ambox-image-side-right > img,
+figure.ambox-image-top > img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.ambox-text figcaption {
+    font-size: 94%;
+    line-height: 1.4em;
+    text-align: center;
+    word-break: break-word;
+    padding: 3px 0 0;
 }
 
 .ambox-title {
     margin: -0.5em 0em;
     padding: 0.2em 0.4em;
-    background-color: var(--color-blue-medium-bg);
-    border: 1px solid var(--color-blue-medium-border);
+    background-color: var(--ambox-title-bg);
+    border: 1px solid var(--ambox-title-border);
     font-family: var(--font-secondary);
     font-weight: bold;
     font-size: 120%;
@@ -233,6 +293,62 @@ nav p {
 
 .ambox-text p:last-child {
     margin-bottom: 0;
+}
+
+.ambox-text ul {
+    list-style-type: disc;
+    margin: 0.3em 0 0 1.6em;
+    padding: 0;
+}
+
+.ambox-text li {
+    margin-bottom: 0.1em;
+}
+
+.ambox-green {
+    --ambox-background-color: var(--color-green-light-bg);
+    --ambox-hairline-color: var(--color-green-light-border);
+    --ambox-title-bg: var(--color-green-medium-bg);
+    --ambox-title-border: var(--color-green-medium-border);
+}
+
+/* Wikipedia stacks Main Page boxes tightly (.mp-box uses margin-top: 4px). */
+.ambox-blue + .ambox-blue {
+    margin-top: 4px;
+}
+
+/* .hlist — MediaWiki's horizontal list, verbatim from Template:Hlist/styles.css.
+   It's what renders the "Archive · By email · More featured articles · About"
+   row at the foot of every Main Page portal box. Links go in <b> in the markup,
+   as Wikipedia does, rather than being bolded here. */
+.hlist ul {
+    margin: 0;
+    padding: 0;
+}
+
+.hlist li {
+    margin: 0;
+    display: inline;
+}
+
+/* \a0 is a non-breaking space, so the middot stays glued to the item before it
+   and can never start a line. The separator itself is bold, the items aren't. */
+.hlist li::after {
+    content: "\a0 · ";
+    font-weight: bold;
+}
+
+.hlist li:last-child::after {
+    content: none;
+}
+
+/* Wikipedia right-aligns this row in the featured-article box
+   (style="text-align:right"). clear keeps it below the floated image when the
+   intro text is too short to push past it. */
+.ambox-footer {
+    clear: both;
+    text-align: right;
+    padding-top: 0.4em;
 }
 
 /** ---------- AMBOX END --------- **/

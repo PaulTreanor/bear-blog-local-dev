@@ -1,8 +1,33 @@
-<div class="ambox ambox-notice">
+<div class="ambox-blue ambox-notice">
   <div class="ambox-text">
     <p class="ambox-title">Hi, welcome to my website</p>
-    <p>I'm a computer programmer from Ireland. I like to build my own tools and this website is where I share my thoughts.</p>
-    <p>Feel free to get in touch!</p>
+    <img class="ambox-image-side" alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='150'%20height='150'%3E%3Crect%20width='150'%20height='150'%20fill='%23c8ccd1'/%3E%3C/svg%3E">
+    <p>I like creating things, whether that be with code, gardening, painting, or whatever other hobbies I pick up and put down when I get board, but this site is mostly about software. </p>
+    <p>I think software should be more colourful, warm, fun, predictable, and have a little bit of social good in the world. In the world of fast AI software development I think side projects are a wonderful way to get detail orientated again.</p>
+    <p>Please look through what I've done, ignore the stuff that's boring, and feel free to reach out (LinkedIn is probably the best place to reach me).</p>
+    <div class="hlist ambox-footer">
+      <ul>
+        <li><b><a href="https://www.linkedin.com/in/paultreanor/">LinkedIn</a></b></li>
+        <li><b><a href="https://github.com/PaulTreanor">GitHub</a></b></li>
+        <li><b><a href="/feed/">RSS</a></b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="ambox-blue ambox-green">
+  <div class="ambox-text">
+    <p class="ambox-title">Some projects I've done</p>
+    <figure class="ambox-image-side-right">
+      <img alt="" src="https://bear-images.sfo2.cdn.digitaloceanspaces.com/paultreanor/urltodo-icon.svg">
+      <figcaption><a href="https://urltodo.com">urltodo</a></figcaption>
+    </figure>
+    <ul>
+      <li><b><a href="https://mapguesser.com">MapGuesser</a></b> is a multiplayer browser game where you have to find where places are on a map. The best guesses win.</li>
+      <li><b><a href="/notes-dater/">Notes Dater</a></b> is an Obsidian plugin I created that adds the created and last updated dates of the active note to the app's status bar. </li>
+      <li><b><a href="https://urltodo.com">urltodo</a></b> is a unique todo list app which encodes the entire list data into the URL. This means it works offline, it has a built in API, and your browser history gives you perfect version control.</li>
+      <li><b><a href="/tiny-calendar/">Tiny Calendar</a></b> is a browser extension for quickly opening dates in Google Calendar.</li>
+      <li><b><a href="/fs2md/">fs2md</a></b> is a CLI util for copying system file trees to your clipboard as markdown.</li>
+    </ul>
   </div>
 </div>
 
