@@ -1,7 +1,7 @@
 <div class="ambox-blue ambox-notice">
   <div class="ambox-text">
     <p class="ambox-title">Hi, welcome to my website</p>
-    <img class="ambox-image-side" alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='150'%20height='150'%3E%3Crect%20width='150'%20height='150'%20fill='%23c8ccd1'/%3E%3C/svg%3E">
+    <img class="ambox-image-side" alt="" src="./painting.png">
     <p>I like creating things, whether that be with code, gardening, painting, or whatever other hobbies I pick up and put down when I get board, but this site is mostly about software. </p>
     <p>I think software should be more colourful, warm, fun, predictable, and have a little bit of social good in the world. In the world of fast AI software development I think side projects are a wonderful way to get detail orientated again.</p>
     <p>Please look through what I've done, ignore the stuff that's boring, and feel free to reach out (LinkedIn is probably the best place to reach me).</p>
