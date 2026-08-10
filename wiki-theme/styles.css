@@ -86,7 +86,6 @@ h1, h2, h3, h4, h5, h6 {
    bold sans-serif. Sizes are MediaWiki's: 188% / 150% / 128% / 116%. */
 h1, h2 {
     font-family: var(--font-main);
-    line-height: 1.375;
 }
 
 h2 {
@@ -119,6 +118,11 @@ a:hover {
 
 nav a {
     margin-right: 8px;
+}
+
+/* Drops the trailing 8px so the last link sits flush with the right edge. */
+nav a:last-child {
+    margin-right: 0;
 }
 
 button {
@@ -171,26 +175,146 @@ footer {
 
 header {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    /* flex-start, not baseline: baseline pins the nav's text baseline to the
+       1.5em title's, so the title's cap towers above it and the nav reads as
+       weighed down. Aligning box tops instead levels all three. */
+    align-items: flex-start;
+    /* flex-start, with the nav pushed right by an auto margin below. Using
+       space-between here would split the slack evenly and float the search
+       into the middle; the auto margin collects it all on one side instead. */
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 1.5em;
     line-height: 1.15;
-    padding-bottom: 0.15em;
+    padding-bottom: 0.5em;
     margin-bottom: 1.5em;
     border-bottom: 1px solid var(--underline-border-color);
+}
+
+/* Auto margin eats all the free space, so the title and search stay grouped
+   on the left and the nav is pushed to the right edge. align-self overrides
+   the header's flex-start to centre the links against the tallest item. */
+nav {
+    margin-left: auto;
+    align-self: center;
 }
 
 nav p {
     margin: 0;
 }
 
+/** ---------- SEARCH START --------- **/
+/* Typeahead search, injected into <header> between the title and the nav.
+   Vector's own box is font-size 0.875rem, flex-grow: 1, max-width 31.25rem. */
+.wiki-search {
+    position: relative;
+    /* Deliberately does not grow. Vector's box is a fixed width with a wide gap
+       before the right-hand links — letting it flex to fill would pin the nav
+       against it and remove the breathing room that balances the bar.
+       space-between then splits the slack into a gap either side. */
+    flex: 0 1 16rem;
+    max-width: 31.25rem;
+    font-size: 0.875rem;
+}
+
+.wiki-search-inner {
+    display: flex;
+}
+
+/* Magnifier sits in the background so no extra element is needed. #72777d is
+   Codex's --color-subtle, legible against both light and dark backgrounds. */
+.wiki-search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 32px;
+    box-sizing: border-box;
+    padding: 0 8px 0 32px;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cg fill='none' stroke='%2372777d' stroke-width='2'%3E%3Ccircle cx='8' cy='8' r='6'/%3E%3Cpath d='M12.5 12.5 18 18' stroke-linecap='round'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 8px center;
+    background-size: 16px 16px;
+    border: 1px solid var(--wikitable-border);
+    border-radius: 2px 0 0 2px;
+    outline: none;
+}
+
+.wiki-search-input:focus {
+    border-color: #36c;
+    box-shadow: inset 0 0 0 1px #36c;
+}
+
+.wiki-search-button {
+    height: 32px;
+    padding: 0 12px;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: bold;
+    color: var(--text-color);
+    background-color: var(--wikitable-bg);
+    border: 1px solid var(--wikitable-border);
+    border-left: 0;
+    border-radius: 0 2px 2px 0;
+    cursor: pointer;
+}
+
+.wiki-search-button:hover {
+    background-color: var(--wikitable-header-bg);
+}
+
+.wiki-search-results {
+    position: absolute;
+    z-index: 50;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: -1px 0 0;
+    padding: 0;
+    list-style: none;
+    background-color: var(--background-color);
+    border: 1px solid var(--wikitable-border);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.wiki-search-results li {
+    margin: 0;
+}
+
+.wiki-search-results a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+}
+
+.wiki-search-results a:hover,
+.wiki-search-results [aria-selected="true"] a {
+    background-color: var(--wikitable-header-bg);
+    text-decoration: none;
+}
+
+.wiki-search-title {
+    display: block;
+    font-weight: bold;
+    color: var(--link-color);
+}
+
+.wiki-search-tags {
+    display: block;
+    font-size: 92%;
+    color: #54595d;
+}
+
+/** ---------- SEARCH END --------- **/
+
 .title:hover {
     text-decoration: none;
 }
 
 .title h1 {
-    font-size: 1.5em;
+    font-size: 2em;
     margin: 0;
 }
 

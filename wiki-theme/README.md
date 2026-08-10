@@ -7,7 +7,7 @@ A Bear Blog theme styled after Wikipedia.
 | Step | Where in Bear | What |
 | --- | --- | --- |
 | 1 | Dashboard → **Custom CSS** | Paste all of `styles.css` |
-| 2 | Settings → **Header directive** | Paste the `<script>` block from `index.html`'s `<head>` (paid accounts only) |
+| 2 | Settings → **Header directive** | Paste both `<script>` blocks from `index.html`'s `<head>` — year grouping and search (paid accounts only) |
 | 3 | Homepage **content box** | See below |
 
 Leave the blog's **date format** at the default `d M, Y`. The script formats the index dates itself, so post pages keep their year.
