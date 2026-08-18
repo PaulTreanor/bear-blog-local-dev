@@ -1,0 +1,1 @@
+- Don't use playwright to verify if things are rendering in the browser. 
