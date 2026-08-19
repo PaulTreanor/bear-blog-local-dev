@@ -1,6 +1,15 @@
+<div class="intro-section">
+  <img src="painting.png" alt="" class="intro-image" />
+  <div>
+
 Hi, I'm a computer programmer from Ireland. I like to build my own tools and this website is where I share my thoughts. 
 
 Feel free to get in touch!
+
+  </div>
+</div>
+
+<div class="section-divider"><img src="book-icon.svg" alt="" class="section-divider-icon" />Posts</div>
 
 <ul class="embedded blog-posts">
   <li data-tags="Essay,Not-tech">
