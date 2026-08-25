@@ -1,6 +1,6 @@
 # Bear blog local dev env
 
-This is my repo for developing Bear Blog themes in a local environment. Rather than developing themes in the Bear Blog dashboard's CSS input box, and hitting "publish" to see the changes, I can develop them locally.
+This is my sandbox for developing Bear Blog themes in a local environment. Rather than developing themes in the Bear Blog dashboard's CSS input box, and hitting "publish" to see the changes, I can develop them locally.
 
 ## CSS workflow
 
