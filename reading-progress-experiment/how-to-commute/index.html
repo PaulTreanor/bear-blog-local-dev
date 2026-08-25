@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+	<!-- Powered by Bear Blog -->
+
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=5"
+		/>
+
+		<title>Commuting - paultreanor.com</title>
+		<link
+			rel="canonical"
+			href="https://paultreanor.bearblog.dev/how-to-commute/"
+		/>
+
+		<meta name="paultreanor" content="look-for-the-bear-necessities" />
+
+		<!-- Primary Meta Tags -->
+		<meta name="title" content="Commuting" />
+		<meta
+			name="description"
+			content="I've commuted by bike, bus, and on foot, and I've landed on a short list of rules that make the whole thing less miserable."
+		/>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:site_name" content="paultreanor.com" />
+		<meta property="og:title" content="Commuting" />
+		<meta property="og:type" content="article" />
+		<meta
+			property="og:url"
+			content="https://paultreanor.bearblog.dev/how-to-commute/"
+		/>
+		<meta
+			property="og:description"
+			content="I've commuted by bike, bus, and on foot, and I've landed on a short list of rules that make the whole thing less miserable."
+		/>
+		<meta property="og:image" content="/static/og-image.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary" />
+		<meta
+			property="twitter:url"
+			content="https://paultreanor.bearblog.dev/how-to-commute/"
+		/>
+		<meta property="twitter:title" content="Commuting" />
+		<meta
+			property="twitter:description"
+			content="I've commuted by bike, bus, and on foot, and I've landed on a short list of rules that make the whole thing less miserable."
+		/>
+		<meta property="twitter:image" content="/static/og-image.png" />
+
+		<!-- Microdata -->
+		<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "BlogPosting",
+				"headline": "Commuting",
+				"url": "https://paultreanor.bearblog.dev/how-to-commute/",
+				"datePublished": "2026-04-12T17:45Z",
+				"description": "I've commuted by bike, bus, and on foot, and I've landed on a short list of rules that make the whole thing less miserable.",
+				"image": "/static/og-image.png"
+			}
+		</script>
+		<link
+			rel="alternate"
+			type="application/atom+xml"
+			href="/feed/"
+			title="paultreanor.com"
+		/>
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			href="/feed/?type=rss"
+			title="paultreanor.com"
+		/>
+
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E🦆%3C/text%3E%3C/svg%3E"
+		/>
+
+		<link rel="stylesheet" type="text/css" href="../styles.css" />
+	</head>
+
+	<body
+		class="post-page"
+		onload="
+			(function () {
+				document.cookie = `timezone=${Intl.DateTimeFormat().resolvedOptions().timeZone};path=/`;
+			})()
+		"
+	>
+		<header>
+			<a class="title" href="/">
+				<h1>paultreanor.com</h1>
+			</a>
+			<nav>
+				<p>
+					<a href="/">Home</a> <a href="/blog/">Blog</a>
+					<a href="https://github.com/PaulTreanor">GitHub</a>
+				</p>
+			</nav>
+		</header>
+		<main>
+			<h1 class="post-title">Commuting</h1>
+			<p class="post-meta">
+				<time datetime="2026-04-12T17:45Z">12 Apr, 2026</time>
+			</p>
+			<div id="content">
+				<!-- Rendered from content.md at load time, see script below -->
+			</div>
+			<div class="tags">
+				<a href="/blog/?q=Essay">#Essay</a>
+				<a href="/blog/?q=Not-tech">#Not-tech</a>
+			</div>
+		</main>
+
+		<script>
+			window.addEventListener("load", () => {
+				if (navigator.webdriver !== true) {
+					const sendHit = (score) => {
+						const params = new URLSearchParams({
+							blog: "paultreanor",
+							token: "/how-to-commute/",
+							referrer: document.referrer.includes("paultreanor.bearblog.dev")
+								? ""
+								: document.referrer,
+							title: "Commuting",
+							score: score,
+						});
+						new Image().src = `/hit/?${params.toString()}`;
+					};
+
+					document.addEventListener("touchmove", () => sendHit(100), {
+						once: true,
+					});
+					document.addEventListener("mousemove", () => sendHit(100), {
+						once: true,
+					});
+				}
+			});
+		</script>
+
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/marked-footnote/dist/index.umd.js"></script>
+		<script>
+			marked.use(markedFootnote());
+			fetch("content.md")
+				.then((res) => res.text())
+				.then((markdown) => {
+					document.getElementById("content").innerHTML = marked.parse(markdown);
+				});
+		</script>
+		<script src="../reading-progress.js"></script>
+		<footer>
+			<span>
+				Powered by
+				<a href="https://bearblog.dev"
+					>Bear
+					<span role="img" class="bear" aria-label="ASCII bear logo"
+						>ʕ•ᴥ•ʔ</span
+					></a
+				>
+			</span>
+		</footer>
+
+		<script>
+			(() => {
+				"use strict";
+				const times = document.querySelectorAll("time");
+				const format_string = "d M, Y" || "d M, Y";
+
+				times.forEach((time) => {
+					time.innerText = formatDate(time.dateTime, format_string);
+				});
+
+				function formatDate(dateStr, formatStr) {
+					const date = new Date(dateStr);
+					const day = date.getDate();
+					const month = date.getMonth();
+					const year = date.getFullYear();
+					const weekday = date.getDay();
+					const hours = date.getHours();
+					const minutes = date.getMinutes();
+					const monthsFull = [
+						"January",
+						"February",
+						"March",
+						"April",
+						"May",
+						"June",
+						"July",
+						"August",
+						"September",
+						"October",
+						"November",
+						"December",
+					];
+					const monthsShort = [
+						"Jan",
+						"Feb",
+						"Mar",
+						"Apr",
+						"May",
+						"Jun",
+						"Jul",
+						"Aug",
+						"Sep",
+						"Oct",
+						"Nov",
+						"Dec",
+					];
+					const daysFull = [
+						"Sunday",
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday",
+						"Saturday",
+					];
+					const daysShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+					function getOrdinal(n) {
+						const s = ["th", "st", "nd", "rd"];
+						const v = n % 100;
+						return s[(v - 20) % 10] || s[v] || s[0];
+					}
+
+					const map = {
+						d: () => day.toString().padStart(2, "0"),
+						m: () => (month + 1).toString().padStart(2, "0"),
+						Y: () => year.toString(),
+						y: () => year.toString().slice(-2),
+						F: () => monthsFull[month],
+						j: () => day.toString(),
+						D: () => daysShort[weekday],
+						l: () => daysFull[weekday],
+						S: () => getOrdinal(day),
+						M: () => monthsShort[month],
+						H: () => hours.toString().padStart(2, "0"),
+						h: () => {
+							let h = hours % 12;
+							h = h === 0 ? 12 : h;
+							return h.toString().padStart(2, "0");
+						},
+						g: () => {
+							let h = hours % 12;
+							return h === 0 ? "12" : h.toString();
+						},
+						i: () => minutes.toString().padStart(2, "0"),
+						a: () => (hours < 12 ? "am" : "pm"),
+						A: () => (hours < 12 ? "AM" : "PM"),
+					};
+
+					let result = "";
+					for (let char of formatStr) {
+						result += map[char] ? map[char]() : char;
+					}
+					return result;
+				}
+			})();
+		</script>
+	</body>
+	<!-- ID: paultreanor -->
+	<!-- 🐻 -->
+</html>
