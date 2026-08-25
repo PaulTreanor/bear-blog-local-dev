@@ -4,6 +4,9 @@ I've commuted by bike, bus, and on foot, and I've landed on a short list of rule
 
 **Have a backup route.** Every commute I've relied on has failed me at least once — a cancelled train, a closed road, a bike with a flat tyre. Knowing the second-best way to get to work in advance means you make that decision calmly, standing at home, rather than panicking on a platform.
 
+> If you run out of ideas, you can always thumb a lift ~ Bilbo Baggins. 
+> It can span multiple lines!
+
 **Use the time for something, even if it's nothing.** I used to treat commuting as dead time to be endured. Now I either listen to something I actually want to hear, or I deliberately listen to nothing at all[^2]. Both are better than doom-scrolling.
 
 None of this makes commuting *good*, exactly. But it makes it predictable, and predictable is most of what you want from forty-five minutes you'd rather not be spending on a bus.
