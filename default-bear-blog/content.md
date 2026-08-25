@@ -5,7 +5,7 @@ Feel free to get in touch!
 <ul class="embedded blog-posts">
   <li data-tags="Essay,Not-tech">
     <span><i><time datetime="2026-04-12T17:45Z">12 Apr, 2026</time></i></span>
-    <a href="/default-bear-blog/how-to-commute/">Commuting</a>
+    <a href="./how-to-commute/">Commuting</a>
   </li>
   <li data-tags="Not-tech,Note">
     <span><i><time datetime="2026-02-28T18:45Z">28 Feb, 2026</time></i></span>
