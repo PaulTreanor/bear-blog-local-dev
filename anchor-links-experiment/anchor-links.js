@@ -87,6 +87,20 @@
 			.replace(/^-+|-+$/g, "");
 	}
 
+	function copyToClipboard(text, link) {
+		navigator.clipboard.writeText(text).then(function () {
+			var originalContent = link.innerHTML;
+			link.textContent = "copied";
+			link.style.fontSize = "0.65em";
+			setTimeout(function () {
+				link.innerHTML = originalContent;
+				link.style.fontSize = "";
+			}, 1500);
+		}).catch(function (err) {
+			console.error("Failed to copy:", err);
+		});
+	}
+
 	function processHeadings() {
 		var content = document.getElementById("content");
 		if (!content) return;
@@ -105,11 +119,17 @@
 			var link = document.createElement("a");
 			link.className = "anchor-link";
 			link.href = "#" + id;
-			link.setAttribute("aria-label", "Permalink to " + heading.textContent);
+			link.setAttribute("aria-label", "Copy link to " + heading.textContent);
 
 			var icon = document.createElement("i");
 			icon.className = "fas fa-link";
 			link.appendChild(icon);
+
+			link.addEventListener("click", function (e) {
+				e.preventDefault();
+				var url = window.location.href.split("#")[0] + "#" + id;
+				copyToClipboard(url, link);
+			});
 
 			heading.appendChild(link);
 			heading.setAttribute(PROCESSED_ATTR, "");
