@@ -2,7 +2,9 @@
   <img src="painting.png" alt="" class="intro-image" />
   <div>
 
-Hi, I'm a computer programmer from Ireland. I like to build my own tools and this website is where I share my thoughts. 
+I'm a computer programmer from Ireland. I like creating things, whether that be with code, gardening, painting, or whatever other hobbies I pick up and put down when I get board, but this site is mostly about software. 
+
+I think software should be more colourful, warm, fun, predictable, and have a little bit of social good in the world. In the world of fast AI software development I think side projects are a wonderful way to get detail orientated again. 
 
 Feel free to get in touch!
 
